@@ -1,5 +1,7 @@
 package demoqa;
 
+import com.codeborne.selenide.Browser;
+import com.codeborne.selenide.Browsers;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -7,10 +9,11 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
+
+
 
 
 public class TestBase {
@@ -27,16 +30,17 @@ public class TestBase {
         Configuration.pageLoadTimeout = 30000;
         Configuration.baseUrl = baseUrl;
         Configuration.driverManagerEnabled = true;
-        switcher(browser);
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                "enableVNC", true,
-                "enableVideo", true
-        ));
-
-        Configuration.browserCapabilities = capabilities;
+        Configuration.browser = Browsers.FIREFOX;
+//        switcher(browser);
+//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+//
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+//                "enableVNC", true,
+//                "enableVideo", true
+//        ));
+//
+//        Configuration.browserCapabilities = capabilities;
 
     }
 
