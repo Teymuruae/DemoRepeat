@@ -7,6 +7,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
@@ -16,27 +17,27 @@ public class TestBase {
 
     //name in Jenkins Tim_DemoQA
     private static String baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
-//    private static String browser = System.getProperty("browser", "Chrome100");
+    private static String browser = System.getProperty("browser", "Chrome100");
 
     @BeforeAll
     static void beforeAll() {
-        WebDriverManager.firefoxdriver().setup();
+
         Configuration.pageLoadStrategy = "eager";
         Configuration.headless = true;
         Configuration.pageLoadTimeout = 30000;
         Configuration.baseUrl = baseUrl;
-        Configuration.browser = "fireFox";
-//        switcher(browser);
-//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.driverManagerEnabled = true;
+        switcher(browser);
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-//                "enableVNC", true,
-//                "enableVideo", true
-//        ));
-//
-//        Configuration.browserCapabilities = capabilities;
-//
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+
+        Configuration.browserCapabilities = capabilities;
+
     }
 
     @BeforeEach
