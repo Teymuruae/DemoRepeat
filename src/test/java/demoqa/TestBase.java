@@ -12,7 +12,7 @@ public class TestBase {
 
     //name in Jenkins Tim_DemoQA
     private static String baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
-    private static String browser = System.getProperty("browser", "Chrome100");
+//    private static String browser = System.getProperty("browser", "Chrome100");
 
     @BeforeAll
     static void beforeAll() {
@@ -20,7 +20,7 @@ public class TestBase {
         Configuration.headless = true;
         Configuration.pageLoadTimeout = 30000;
         Configuration.baseUrl = baseUrl;
-        switcher(browser);
+//        switcher(browser);
     }
 
     @BeforeEach
