@@ -22,7 +22,7 @@ public class TestBase {
     static void beforeAll() {
         WebDriverManager.firefoxdriver().setup();
         Configuration.pageLoadStrategy = "eager";
-//        Configuration.headless = true;
+        Configuration.headless = true;
         Configuration.pageLoadTimeout = 30000;
         Configuration.baseUrl = baseUrl;
         Configuration.browser = "fireFox";
@@ -50,7 +50,7 @@ public class TestBase {
         Attachments.addVideo();
         Attachments.pageSource2();
         Attachments.attachScreenshot();
-        Attachments.browserConsoleLogs();
+//        Attachments.browserConsoleLogs();
 
     }
 
