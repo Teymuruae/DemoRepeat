@@ -53,6 +53,7 @@ allure {
 }
 
 tasks.withType(Test) {
+    systemProperties(System.getProperties())
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
@@ -64,4 +65,11 @@ tasks.withType(Test) {
 
 test {
     useJUnitPlatform()
+}
+
+task demo_test(type: Test) {
+    useJUnitPlatform{
+        includeTags("demoQaTest")   //включает тесты по названию тэга, которые надо запустить
+
+    }
 }

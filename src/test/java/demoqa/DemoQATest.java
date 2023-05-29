@@ -3,6 +3,9 @@ package demoqa;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import demoqa.components.ModalWIndow;
+import io.qameta.allure.Owner;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
@@ -13,16 +16,21 @@ public class DemoQATest extends TestBase {
     ModalWIndow modalWIndow = new ModalWIndow();
     String state = TestData.state;
     String city = TestData.city(state);
+
+
+    @Owner("TimBart")
+    @DisplayName("Заполнение формы регистрации студента")
+    @Tag("demoQaTest")
     @Test
     void demoQaTest() {
 
-        step("open page", ()->{
+        step("open page", () -> {
             Selenide.open(path);
             Selenide.executeJavaScript("$('footer').remove()");
             Selenide.executeJavaScript("$('#fixedban').remove()");
             WebDriverRunner.getWebDriver().manage().window().maximize();
         });
-        step("fill registration form", ()-> {
+        step("fill registration form", () -> {
             registrationPage
                     .checkH5TextOnPage("Student Registration Form")
                     .setFirstName(TestData.firstName)
@@ -38,7 +46,7 @@ public class DemoQATest extends TestBase {
                     .setStateAndCity(state, city)
                     .clickSubmitButton();
         });
-        step("verify form", ()->{
+        step("verify form", () -> {
             modalWIndow
                     .checkText("Thanks for submitting the form")
                     .verify("Gender", TestData.gender)

@@ -10,27 +10,52 @@ import org.junit.jupiter.api.BeforeEach;
 
 public class TestBase {
 
+    //name in Jenkins Tim_DemoQA
+    private static String baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
+    private static String browser = System.getProperty("browser", "Chrome100");
+
     @BeforeAll
-    static void beforeAll(){
+    static void beforeAll() {
         Configuration.pageLoadStrategy = "eager";
+        Configuration.headless = true;
         Configuration.pageLoadTimeout = 30000;
-//        Configuration.timeout = 10000;
-//        Configuration.holdBrowserOpen = true;
-        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.baseUrl = baseUrl;
+        switcher(browser);
     }
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         SelenideLogger.addListener("allure", new AllureSelenide());
 
     }
 
     @AfterEach
-    void afterEach(){
-       Attachments.addVideo();
-       Attachments.pageSource2();
-       Attachments.attachScreenshot();
-       Attachments.browserConsoleLogs();
+    void afterEach() {
+        Attachments.addVideo();
+        Attachments.pageSource2();
+        Attachments.attachScreenshot();
+        Attachments.browserConsoleLogs();
+
+    }
+
+    public static void switcher(String browser1) {
+        switch (browser1) {
+            case "chrome100":
+                Configuration.browser = "Chrome";
+                Configuration.browserVersion = "100.0";
+                break;
+            case "fireFox97":
+                Configuration.browser = "fireFox";
+                Configuration.browserVersion = "97.0";
+                break;
+            case "fireFox98":
+                Configuration.browser = "fireFox";
+                Configuration.browserVersion = "98.0";
+                break;
+            case "chrome99":
+                Configuration.browser = "Chrome";
+                Configuration.browserVersion = "99.0";
+        }
 
     }
 }
