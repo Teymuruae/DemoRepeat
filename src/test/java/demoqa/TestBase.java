@@ -19,6 +19,7 @@ import java.util.Map;
 public class TestBase {
 
     //name in Jenkins Tim_DemoQA
+    //Allure testOps Tima_allure_demoQa
     private static String baseUrl = System.getProperty("baseUrl", "https://demoqa.com");
     private static String browser = System.getProperty("browser", "Chrome100");
 
