@@ -26,21 +26,20 @@ public class TestBase {
     static void beforeAll() {
 
         Configuration.pageLoadStrategy = "eager";
-        Configuration.headless = true;
+//        Configuration.headless = true;
         Configuration.pageLoadTimeout = 30000;
         Configuration.baseUrl = baseUrl;
-        Configuration.driverManagerEnabled = true;
-        Configuration.browser = Browsers.FIREFOX;
-//        switcher(browser);
-//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
-//
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-//                "enableVNC", true,
-//                "enableVideo", true
-//        ));
-//
-//        Configuration.browserCapabilities = capabilities;
+//        Configuration.driverManagerEnabled = true;
+        switcher(browser);
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+
+        Configuration.browserCapabilities = capabilities;
 
     }
 
