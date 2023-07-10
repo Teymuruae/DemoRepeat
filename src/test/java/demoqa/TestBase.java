@@ -34,6 +34,7 @@ public class TestBase {
         switcher(browser);
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
@@ -52,7 +53,7 @@ public class TestBase {
 
     @AfterEach
     void afterEach() {
-        Attachments.addVideo();
+//        Attachments.addVideo();
         Attachments.pageSource2();
         Attachments.attachScreenshot();
 //        Attachments.browserConsoleLogs();
